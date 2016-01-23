@@ -1,17 +1,26 @@
-var gulp = require('gulp');
-var babel = require('gulp-babel');
-var flow = require('gulp-flowtype');
+var gulp = require('gulp')
+var babel = require('gulp-babel')
+//var flow = require('gulp-flowtype')
+var merge = require('merge-stream');
  
 gulp.task('typecheck', function() {
-  return gulp.src('./src/**/*.js')
-    .pipe(flow({
+  var flowConfig = {
         all: false,
         weak: false,
-        declarations: './declarations',
         killFlow: false,
         beep: false,
         abort: false
-    }))
+    }
+    
+  var lib = gulp.src('./src/lib/*.js')
+//    .pipe(flow(flowConfig))
     .pipe(babel())
-    .pipe(gulp.dest('.'));
-});
+    .pipe(gulp.dest('./lib'))
+    
+  var test = gulp.src('./src/test/*.js')
+//    .pipe(flow(flowConfig))
+    .pipe(babel())
+    .pipe(gulp.dest('./test'))
+  
+  return merge([lib, test])
+})
