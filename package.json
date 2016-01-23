@@ -1,0 +1,33 @@
+{
+  "name": "hscic-tech-test",
+  "version": "0.0.1",
+  "description": "A simple script to search a text file for matching lines",
+  "main": "./lib/search.js",
+  "scripts": {
+    "compile": "gulp typecheck",
+    "prepublish": "npm run compile",
+    "pretest": "npm run compile",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamespic/hscic-tech-test"
+  },
+  "author": "James Pickering",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamespic/hscic-tech-test/issues"
+  },
+  "homepage": "https://github.com/jamespic/hscic-tech-test",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-flowtype": "^0.4.9",
+    "mocha": "^2.3.4"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib"
+  }
+}
