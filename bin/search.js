@@ -9,13 +9,23 @@ var optparse = _interopRequireWildcard(_optparse);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-const SWITCHES = [['-a', '--and', 'search in AND mode'], ['-o', '--or', 'search in OR mode (default)'], ['-i', '--input FILE', 'input file (default stdin)']];
+const SWITCHES = [['-a', '--and', 'search in AND mode'], ['-o', '--or', 'search in OR mode (default)'], ['-i', '--input FILE', 'input file (default stdin)'], ['-h', '--help', "display usage information"]];
 
 var options = {};
 var filename;
 
 var parser = new optparse.OptionParser(SWITCHES);
+parser.banner = `HSCIC Text Search Tool
+=======================
 
+Search text files for text queries, and return the numbers of matched lines.
+
+Usage: hscic-test [OPTIONS] <search terms>`;
+
+parser.on('help', () => {
+  console.log(parser.toString());
+  process.exit();
+});
 parser.on('and', () => options.type = 'AND');
 parser.on('or', () => options.type = 'OR');
 parser.on('input', (input, value) => filename = value);

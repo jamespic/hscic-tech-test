@@ -5,14 +5,26 @@ import * as optparse from "optparse"
 const SWITCHES = [
     ['-a', '--and', 'search in AND mode'],
     ['-o', '--or', 'search in OR mode (default)'],
-    ['-i', '--input FILE', 'input file (default stdin)']
+    ['-i', '--input FILE', 'input file (default stdin)'],
+    ['-h', '--help', "display usage information"]
 ]
 
 var options = {}
 var filename
 
 var parser = new optparse.OptionParser(SWITCHES)
+parser.banner =
+`HSCIC Text Search Tool
+=======================
 
+Search text files for text queries, and return the numbers of matched lines.
+
+Usage: hscic-test [OPTIONS] <search terms>`
+
+parser.on('help', () => {
+  console.log(parser.toString())
+  process.exit()
+})
 parser.on('and', () => options.type = 'AND')
 parser.on('or', () => options.type = 'OR')
 parser.on('input', (input, value) => filename = value)
