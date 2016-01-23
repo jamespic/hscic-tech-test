@@ -6,7 +6,8 @@ import * as fs from "fs"
 export function matcher(options) {
   return function matches(line) {
     var terms = options.terms.split(/\s+/)
-    var termInWords = (term) => line.indexOf(term) !== -1
+    var words = line.split(/\s+/)
+    var termInWords = (term) => words.indexOf(term) !== -1
     if (options.type == "AND") {
       return terms.every(termInWords)
     } else {
