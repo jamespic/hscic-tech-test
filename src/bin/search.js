@@ -41,7 +41,7 @@ searchFile(filename, options, result => {
       console.log("Matched no rows")
       break
     case 1:
-      console.log(`Matcher row ${result[0]}`)
+      console.log(`Matched row ${result[0]}`)
       break
     default:
       console.log(`Matched rows ${result.join(", ")}`)
