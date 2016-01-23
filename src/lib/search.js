@@ -5,12 +5,12 @@ import * as fs from "fs"
 
 export function matcher(options) {
   return function matches(line) {
-    var words = line.split(/\s+/)
-    var termInWords = (term) => words.indexOf(term) !== -1
+    var terms = options.terms.split(/\s+/)
+    var termInWords = (term) => line.indexOf(term) !== -1
     if (options.type == "AND") {
-      return options.terms.every(termInWords)
+      return terms.every(termInWords)
     } else {
-      return options.terms.find(termInWords) !== undefined
+      return terms.find(termInWords) !== undefined
     }
   }
 }
