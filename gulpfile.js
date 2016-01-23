@@ -3,7 +3,7 @@ var babel = require('gulp-babel');
 var flow = require('gulp-flowtype');
  
 gulp.task('typecheck', function() {
-  return gulp.src('./src/*.js')
+  return gulp.src('./src/**/*.js')
     .pipe(flow({
         all: false,
         weak: false,
@@ -13,5 +13,5 @@ gulp.task('typecheck', function() {
         abort: false
     }))
     .pipe(babel())
-    .pipe(gulp.dest('./lib'));
+    .pipe(gulp.dest('.'));
 });
