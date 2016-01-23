@@ -20,7 +20,7 @@ export function searchFile(filename, options, callback) {
   var matchedLines = []
   var currentLine = -1
   var reader = readline.createInterface({
-    input: fs.createReadStream(filename)
+    input: filename ? fs.createReadStream(filename) : process.stdin
   })
   reader.on("line", line => {
     currentLine++
